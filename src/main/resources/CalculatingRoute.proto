@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_package = "CalculatingRoute";
+option java_multiple_files = true;
+option java_outer_classname = "CalculatingRouteImpl";
+
+package CalculatingRoute;
+
+service CalculatingRoute {
+	//rpc stands for remote procedure call
+	//containsString is the actual message that travel between client and server
+	//a second message travels back
+
+	// RPC Method 1
+	rpc writeAddress(requestAddress) returns (lookingAddress){}
+
+	// RPC Method 2
+	// rpc mappingDestinationOnMaps -- Method 2 nao foi utilizado pq era de servidor para servidor
+
+	// RPC Method 3
+	rpc displayDistance(requestAddress) returns (addressDistance){}
+
+}
+		// RPC message Method 1 and Method 3
+	message requestAddress{
+
+		string stringAddress = 1; //client digita endereco
+		string ZIPCode = 2; //client digita zipcode
+	}
+		// RPC return Method 1
+	message lookingAddress{
+
+		string looking_address = 1; //sistema entendera que a string representa a procura do endereco
+	}
+
+
+		// RPC return Method 3
+	message addressDistance{
+
+		int32 destination_km = 1; //sistema devolve a distacia ate o destino
+	}
+
+
+
+
+
