@@ -35,7 +35,7 @@ public class CalculatingRouteServer{
 			//Find out what was the content of the message sent by the client
 			String firstString = request.getStringAddress();
 			String secondString = request.getZIPCode();
-			System.out.println("The address is: " + firstString + "and the ZIP Code is: " + secondString);
+			System.out.println("The address is: " + firstString + " and the ZIP Code is: " + secondString);
 			
 			//Now build up our response
 			

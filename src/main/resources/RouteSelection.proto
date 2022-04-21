@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option java_package = "RouteSelection";
+option java_multiple_files = true;
+option java_outer_classname = "RouteSelectionImpl";
+
+package RouteSelection;
+
+service RouteSelection {
+	//rpc stands for remote procedure call
+	//containsString is the actual message that travel between client and server
+	//a second message travels back
+
+	// RPC Method 1 Client Streaming
+	rpc selectRoute(stream route) returns (routeSelected){}
+
+	// RPC Method 2 Server Streaming
+	rpc transportPublicAvailable(requestTransport) returns (stream transportAvailable){}
+        // method (paramentro do metodo) e retorna a variavel
+}
+		// RPC message Method 1
+	message route{
+
+		string stringAddress = 1; //variaveis da mensagem
+
+	}
+		// RPC return Method 1
+	message routeSelected{
+
+		string destination = 1; //sistema entendera que a string representa a procura do endereco
+	}
+
+		// RPC message Method 2
+	message requestTransport{
+
+		string reqTransport = 1; //client digita endereco
+
+	}
+
+		// RPC return Method 2
+	message transportAvailable{
+
+		string kindTransport = 1; //sistema devolve a distacia ate o destino
+	}
+
+
+
+
+
