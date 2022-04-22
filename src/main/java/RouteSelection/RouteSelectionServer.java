@@ -19,7 +19,7 @@ public class RouteSelectionServer {
 
 	private void start() throws IOException, InterruptedException {
 		System.out.println("Starting gRPC Server");
-		int port = 50052;
+		int port = 50051;
 		
 		server = ServerBuilder.forPort(port).addService((BindableService) new RouteSelectionServerImpl()).build().start();
 		System.out.println("Server running on port: " + port );
@@ -40,7 +40,7 @@ public class RouteSelectionServer {
 		        @Override
 		        public void onNext(route value) {
 		            count++;
-		            System.out.println("Item " + count + " - " + value.getStringAddress()); 
+		            System.out.println("Destination " + count + " - " + value.getStringAddress()); 
 		        }	
 		        
 				@Override
@@ -52,7 +52,7 @@ public class RouteSelectionServer {
 		        public void onCompleted() {
 		        
 		        	responseObserver.onNext(routeSelected.newBuilder()
-		        		.setDestination("Message from server, streaming now completed")
+		        		.setDestination("For this destination you can select 2 different route")
 		        		.build());
 		        	responseObserver.onCompleted();	
 		        }						
@@ -64,13 +64,13 @@ public class RouteSelectionServer {
 		public void transportPublicAvailable(requestTransport request, StreamObserver<transportAvailable> responseObserver) {
 			//Find out what was the content of the message sent by the client
 			String reqTransport = request.getReqTransport();
-			System.out.println("Our first String is: " + reqTransport);
+			System.out.println("For the route selected: " + reqTransport + " . There are  BUS or TRAIN available ");
 			
 			//Now build up our response
 			transportAvailable.Builder responseBuilder = transportAvailable.newBuilder();
 			
 			//First message
-			responseBuilder.setKindTransport("Our First Response String is:  " + reqTransport);
+			responseBuilder.setKindTransport("For the route selected: " + reqTransport + " . There are  BUS or TRAIN available ");
 			
 			responseObserver.onNext(responseBuilder.build());
 			

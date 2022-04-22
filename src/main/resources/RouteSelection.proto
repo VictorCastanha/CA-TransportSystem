@@ -21,7 +21,7 @@ service RouteSelection {
 		// RPC message Method 1
 	message route{
 
-		string stringAddress = 1; //variaveis da mensagem
+		string stringAddress = 1; //select the route
 
 	}
 		// RPC return Method 1

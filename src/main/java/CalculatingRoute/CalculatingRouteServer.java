@@ -14,7 +14,14 @@ public class CalculatingRouteServer{
 	public static void main(String[] args) throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
 		CalculatingRouteServer ourServer = new CalculatingRouteServer();
-		ourServer.start();		
+/*		
+		int port = 50051;
+		String service_type = "_grpc._tcp.local.";
+		String service_name = "GrpcServer";
+		CalculatingRouteRegistration ssr = new CalculatingRouteRegistration();
+		ssr.run(port, service_type, service_name);
+*/
+		ourServer.start();
 	}
 
 	private void start() throws IOException, InterruptedException {

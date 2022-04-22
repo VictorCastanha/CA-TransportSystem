@@ -9,7 +9,7 @@ public interface routeOrBuilder extends
 
   /**
    * <pre>
-   *variaveis da mensagem
+   *select the route
    * </pre>
    *
    * <code>string stringAddress = 1;</code>
@@ -17,7 +17,7 @@ public interface routeOrBuilder extends
   java.lang.String getStringAddress();
   /**
    * <pre>
-   *variaveis da mensagem
+   *select the route
    * </pre>
    *
    * <code>string stringAddress = 1;</code>

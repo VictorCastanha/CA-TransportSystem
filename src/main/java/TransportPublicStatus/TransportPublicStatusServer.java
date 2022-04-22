@@ -29,7 +29,7 @@ public class TransportPublicStatusServer extends TransportPublicStatusImplBase {
 	//RPC Method 1 - Client
 	@Override
 	public StreamObserver<transpSelection>selectTransportPublic(StreamObserver<transpSelected>responseObserver){
-		System.out.println("Selection of the public Transport");
+		System.out.println("Selection of the public Transport and see its status");
 		return new StreamObserver<transpSelection>() {
 			int count;
 			
@@ -48,7 +48,7 @@ public class TransportPublicStatusServer extends TransportPublicStatusImplBase {
 	        public void onCompleted() {
 	        
 	        	responseObserver.onNext(transpSelected.newBuilder()
-	        		.setTransportInformations("Message from server, streaming now completed")
+	        		.setTransportInformations("Looking for the information about this transport public")
 	        		.build());
 	        	responseObserver.onCompleted();	
 	        }						
@@ -66,16 +66,28 @@ public class TransportPublicStatusServer extends TransportPublicStatusImplBase {
 	        public void onNext(transpStatus rq) {
 	            count++;
 	            System.out.println(rq.getTransportSituation());
-	            for (int i = 0; i < 2; i++) {
-	            	transResponse rm = transResponse.newBuilder().setStringTransResponse("Server message: " + i).build();
-	    	    	try {
+	            for (int i = 1; i < 3; i++) {
+	            	transResponse rm = transResponse.newBuilder().setStringTransResponse("The transport selected " + i + " is not to busy.... and there are seats available." ).build();
+	            	try {
 	    				Thread.sleep(1500);
 	    			} catch (InterruptedException e) {
 	    				// TODO Auto-generated catch block
 	    				e.printStackTrace();
 	    			}
 	    	    	responseObserver.onNext(rm);
-	    	    }	           
+	    	    	
+	    	    	
+	    	    }	
+	           /* for (int i = 1; i < 2; i++) {
+	            	transResponse rm = transResponse.newBuilder().setStringTransResponse("... and there are seats available." ).build();
+	            	try {
+	    				Thread.sleep(1500);
+	    			} catch (InterruptedException e) {
+	    				// TODO Auto-generated catch block
+	    				e.printStackTrace();
+	    			}
+	    	    	responseObserver.onNext(rm);
+	    	    }*/
 	        }
 	        @Override
 	        public void onCompleted() {
